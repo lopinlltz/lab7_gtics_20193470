@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragmentos/botones.html :: header( title = 'GTICS F')}"></head>
+
+  <body>
+    <main>
+      <div class="container px-4 pb-5">
+        <h1 class="pb-2 border-bottom">Lista de técnicos</h1>
+        <a class="btn btn-primary mt-4 mb-4" th:href="@{'/tecnico/crear'}">Nuevo técnico</a>
+
+        <table class="table">
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Dni</th>
+            <th>Teléfono</th>
+            <th>Edad</th>
+            <th></th>
+          </tr>
+          <tr th:each="tecnico, info : ${listatecnicos}">
+            <td th:text="${info.index + 1}"></td>
+            <td th:text="${tecnico.firstname}"></td>
+            <td th:text="${tecnico.lastname}"></td>
+            <td th:text="${tecnico.dni}"></td>
+            <td th:text="${tecnico.phone}"></td>
+            <td th:text="${tecnico.age}"></td>
+            <td><a class="btn btn-primary"
+                   th:href="@{'/tecnico/editar' + '?id=' + ${tecnico.technicianID}}">Editar</a>
+            </td>
+
+          </tr>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>
